@@ -7,7 +7,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  VERS_TAG: ghcr.io/curtislarson/caddyshack:2.6.0
+  VERS_TAG: ghcr.io/curtislarson/caddyshack:2.6.0-caddy-docker-proxy
   PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
