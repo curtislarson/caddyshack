@@ -1,20 +1,20 @@
-name: caddyshack
+name: esm
 
 on:
   push:
     branches:
       - "master"
     paths:
-      - ".github/workflows/caddyshack.yml"
-      - "caddy-docker-proxy/**"
+      - ".github/workflows/esm.yml"
+      - "esm/**"
   workflow_dispatch: {}
 
 env:
-  VERS_TAG: ghcr.io/curtislarson/caddyshack:2.6.2-caddy-docker-proxy
+  VERS_TAG: ghcr.io/curtislarson/esm.sh:v103
   PLATFORMS: linux/amd64,linux/arm64
 
 jobs:
-  caddyshack-docker-proxy:
+  esm:
     name: Build and Publish
     runs-on: ubuntu-latest
 
@@ -57,7 +57,7 @@ jobs:
       - name: Why don't you just let me be?
         uses: docker/build-push-action@v3
         with:
-          context: ./caddy-docker-proxy
+          context: ./esm
           push: true
           tags: ${{ env.VERS_TAG }}
           platforms: ${{ env.PLATFORMS }}
