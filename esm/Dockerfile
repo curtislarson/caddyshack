@@ -11,4 +11,4 @@ USER esm
 WORKDIR /esm
 RUN go build -o bin/esmd esm.sh/main.go
 
-ENTRYPOINT ["/esm/bin/esmd", "--config", "/esm/config.json"]
+ENTRYPOINT ["/esm/bin/esmd", "--config", "config.json"]
