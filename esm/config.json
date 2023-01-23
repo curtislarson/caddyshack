@@ -1,5 +1,5 @@
 {
   "port": 8011,
   "workDir": "/esm.sh",
-  "origin": "https://esm.quack.id"
+  "logLevel": "debug"
 }
