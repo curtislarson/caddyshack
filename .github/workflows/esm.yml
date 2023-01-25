@@ -10,9 +10,9 @@ on:
   workflow_dispatch: {}
 
 env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: curtislarson/caddyshack/esm-sh
+  IMAGE_NAME: ghcr.io/curtislarson/esm-sh
   PLATFORMS: linux/amd64,linux/arm64
+  VERS_TAG: v104
 
 jobs:
   esm:
@@ -28,17 +28,8 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Docker Metadata
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-
-      - name: I'm alright
-        uses: docker/setup-qemu-action@v2
-
-      - name: Don't nobody worry 'bout me
-        uses: docker/setup-buildx-action@v2
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
 
       - name: Kenny Logginsto GitHub Container Registry
         uses: docker/login-action@v2
@@ -58,8 +49,7 @@ jobs:
         with:
           context: ./esm
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ env.IMAGE_NAME}}:${{ env.VERS_TAG }},${{ env.IMAGE_NAME}}:latest
           platforms: ${{ env.PLATFORMS }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
